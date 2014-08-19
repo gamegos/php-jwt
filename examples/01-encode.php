@@ -6,7 +6,7 @@ $alg = 'HS256';
 
 $token = new \Gamegos\JWT\Token();
 $token->setClaim('sub', 'someone@example.com');
-$token->setClaim('exp', time() + 60*60*5);
+$token->setClaim('exp', time() + 60*5);
 
 $encoder = new \Gamegos\JWT\Encoder();
 $encoder->encode($token, $key, $alg);

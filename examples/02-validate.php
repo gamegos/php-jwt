@@ -1,12 +1,18 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$jwtString = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzb21lb25lQGV4YW1wbGUuY29tIiwiZXhwIjoxNDA4NDI2OTUyfQ.4gRgjKF5oe32qtGhhezuqQu9tvZ70h6qzZDFUzSKJRw';
+$jwtString = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzb21lb25lQGV4YW1wbGUuY29tIiwiZXhwIjoxNDA4NDUyMzcxfQ.Fy1DLdfZBiR_khyTsghItDW3_1rM7osz_IxjiaiRto0';
 
 $key = 'some-secret-for-hmac';
 
-$validator = new \Gamegos\JWT\Validator();
-$token = $validator->validate($jwtString, $key);
 
-print_r($token->getClaims());
-print_r($token->getHeaders());
+try {
+    $validator = new \Gamegos\JWT\Validator();
+    $token = $validator->validate($jwtString, $key);
+
+    print_r($token->getClaims());
+    print_r($token->getHeaders());
+} catch (\Gamegos\JWT\Exception\JWTException $e) {
+    printf("Invalid Token:\n  %s\n", $e->getMessage());
+    //var_dump($e->getToken());
+}
