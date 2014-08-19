@@ -1,0 +1,26 @@
+{
+    "name": "gamegos/jwt",
+    "description": "Json Web Token (JWT) PHP implementation",
+    "keywords": ["jwt", "json web token", "json token", "jws"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mustafa Altun",
+            "email": "gmail@mustafaaltun.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "gamegos/jws": "~0.2"
+    },
+
+    "require-dev": {
+        "phpunit/phpunit": "4.1.*"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "Gamegos\\JWT\\": ["src", "tests"]
+        }
+    }
+}
