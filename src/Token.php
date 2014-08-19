@@ -106,4 +106,77 @@ class Token
         return time() > $exp;
     }
 
+    // "Long" getters and setters for *Registered Claim Names* defined in
+    // http://tools.ietf.org/html/draft-ietf-oauth-json-web-token-25#section-4.1
+
+    public function getIssuer()
+    {
+        return $this->getClaim("iss");
+    }
+
+    public function setIssuer($val)
+    {
+        $this->setClaim("iss", $val);
+    }
+
+    public function getSubject()
+    {
+        return $this->getClaim("sub");
+    }
+
+    public function setSubject($val)
+    {
+        $this->setClaim("sub", $val);
+    }
+
+    public function getAudience()
+    {
+        return $this->getClaim("aud");
+    }
+
+    public function setAudience($val)
+    {
+        $this->setClaim("aud", $val);
+    }
+
+    public function getExpirationTime()
+    {
+        return $this->getClaim("exp");
+    }
+
+    public function setExpirationTime($val)
+    {
+        $this->setClaim("exp", $val);
+    }
+
+    public function getNotBefore()
+    {
+        return $this->getClaim("nbf");
+    }
+
+    public function setNotBefore($val)
+    {
+        $this->setClaim("nbf", $val);
+    }
+
+    public function getIssuedAt()
+    {
+        return $this->getClaim("iat");
+    }
+
+    public function setIssuedAt($val)
+    {
+        $this->setClaim("iat", $val);
+    }
+
+    public function getJWTID()
+    {
+        return $this->getClaim("jti");
+    }
+
+    public function setJWTID($val)
+    {
+        $this->setClaim("jti", $val);
+    }
+
 }
