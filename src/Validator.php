@@ -2,7 +2,10 @@
 
 namespace Gamegos\JWT;
 
+use Gamegos\JWS\Exception\JWSException;
 use Gamegos\JWS\JWS;
+use Gamegos\JWT\Exception\JWTExpiredException;
+use Gamegos\JWT\Exception\JWTSignatureException;
 
 class Validator
 {
@@ -15,14 +18,20 @@ class Validator
 
     public function validate($jwtString, $key)
     {
-        $jwsString = $this->jws->decode($jwtString, $key);
-
-        $headers = $jwsString['headers'];
-        $claims  = $jwsString['payload'];
+        try {
+            $jwsData = $this->jws->decode($jwtString, $key);
+            $headers = $jwsData['headers'];
+            $claims  = $jwsData['payload'];
+        } catch (JWSException $e) {
+            throw new JWTSignatureException($e->getMessage(), $e->getCode(), $e);
+        }
 
         $token = new Token($claims, $headers, $jwtString);
 
-        //check expire date
+        if ($token->isExpired()) {
+            throw new JWTExpiredException('Token expired.', 0, null, $token);
+        }
+
         return $token;
 
     }
