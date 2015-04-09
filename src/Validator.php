@@ -19,7 +19,7 @@ class Validator
     public function validate($jwtString, $key)
     {
         try {
-            $jwsData = $this->jws->decode($jwtString, $key);
+            $jwsData = $this->jws->verify($jwtString, $key);
             $headers = $jwsData['headers'];
             $claims  = $jwsData['payload'];
         } catch (JWSException $e) {
